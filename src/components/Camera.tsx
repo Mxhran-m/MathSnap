@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState, useEffect } from 'react';
 import Webcam from 'react-webcam';
-import { Camera as CameraIcon, Loader2, RefreshCw, AlertCircle, Upload, Image } from 'lucide-react';
+import { Camera as CameraIcon, Loader2, RefreshCw, AlertCircle, Upload, Image, FlipHorizontal } from 'lucide-react';
 import { analyzeImage } from '../lib/gemini';
 import { Solution } from './Solution';
 
@@ -22,6 +22,18 @@ export function Camera() {
   const [error, setError] = useState<string>('');
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
+  const [facingMode, setFacingMode] = useState<'user' | 'environment'>('user');
+  
+  // Update webcam configuration
+  const webcamConfig = {
+    ...WEBCAM_CONFIG,
+    facingMode: facingMode
+  };
+  
+  // Add camera switch handler
+  const switchCamera = useCallback(() => {
+    setFacingMode(prevMode => prevMode === 'user' ? 'environment' : 'user');
+  }, []);
   
   // Check for camera permission status
   useEffect(() => {
@@ -173,14 +185,15 @@ export function Camera() {
           audio={false}
           screenshotFormat="image/jpeg"
           className="absolute top-0 left-0 w-full h-full object-contain"
-          videoConstraints={WEBCAM_CONFIG}
-          mirrored={false}
+          videoConstraints={webcamConfig}
+          mirrored={facingMode === 'user'}
           onUserMediaError={(err) => {
             console.error('Webcam error:', err);
             setError('Failed to access camera. Please check permissions and try again.');
             setHasPermission(false);
           }}
         />
+        {/* Camera controls */}
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
           <button
             onClick={capture}
@@ -198,6 +211,15 @@ export function Camera() {
                 Capture
               </>
             )}
+          </button>
+  
+          <button
+            onClick={switchCamera}
+            disabled={isAnalyzing}
+            className="bg-gray-700 hover:bg-gray-800 text-white px-6 py-4 rounded-full flex items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transition-all duration-200 text-lg font-medium"
+            title="Switch Camera"
+          >
+            <FlipHorizontal className="w-6 h-6" />
           </button>
   
           <button
