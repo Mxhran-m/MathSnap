@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <div className="flex items-center space-x-2">
             <span className="text-sm text-gray-300">
-              © 2025 Designed and developed by Sanan Katpadi.
+              © 2025 Designed and developed by Mehran M.
             </span>
           </div>
           
