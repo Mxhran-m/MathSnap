@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Volume2, VolumeX, Copy, CheckCircle, Download } from 'lucide-react';
 import { speak, stopSpeaking } from '../lib/speech';
 import 'katex/dist/katex.min.css';
-//@ts-ignore
+//@ts-expect-error Types are missing for react-katex
 import { InlineMath, BlockMath } from 'react-katex';
 
 interface SolutionProps {
