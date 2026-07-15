@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const genAI = new GoogleGenerativeAI(import.meta.env.GEMINI_API || "AQ.Ab8RN6KFfYSHe_flxSygjz8tzIj7JQK2dGB8KPVfrWeQPgLw5Q");
+const genAI = new GoogleGenerativeAI(import.meta.env.GEMINI_API || "AIzaSyApHA3wnjsKAyYYl7Eo1xMULaVovBmCtug");
 
 function isValidBase64Image(imageData: string): boolean {
   try {
