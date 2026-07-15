@@ -29,7 +29,7 @@ export async function analyzeImage(imageData: string): Promise<string> {
       throw new Error('Invalid image data');
     }
 
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
     
     const prompt = "You are a helpful teaching assistant. Please analyze this image and provide a clear, step-by-step solution if it contains an academic problem. If it's not an academic problem, politely explain that you can only help with academic questions.";
     
