@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState, useEffect } from 'react';
 import Webcam from 'react-webcam';
-import { Camera as CameraIcon, Loader2, RefreshCw, AlertCircle, Upload, Image, FlipHorizontal } from 'lucide-react';
+import { Camera as CameraIcon, Loader2, RefreshCw, AlertCircle, Image, FlipHorizontal } from 'lucide-react';
 import { analyzeImage } from '../lib/gemini';
 import { Solution } from './Solution';
 
